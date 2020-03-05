@@ -1,2 +1,2 @@
 # AppearanceToggleJXA
-Toggle Appearance and Desktop Background (wallpaper) in macOS Mojave, Catalina using JavaScript for Automation (JXA)
+Toggle Appearance and Desktop Background (wallpaper) in macOS Mojave, Catalina using AppleScript JavaScript for Automation (JXA)
