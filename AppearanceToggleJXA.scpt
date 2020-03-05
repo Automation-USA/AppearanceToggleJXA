@@ -55,7 +55,7 @@ function switchWallpaper(bool) {
 			var myOS = 'mojave';
 			var wallPaper = '/Library/Desktop Pictures/Mojave Night.jpg';
 		}
-		else if (osVersion().includes('10.15') ){
+		else if (osVersion().includes('10.15') ) {
 			var myOS = 'catalina';
 			var wallPaper = '/System/Library/Desktop Pictures/Catalina Night.heic';
 		}
@@ -102,8 +102,7 @@ function theDefault()
 if ( osVersion().includes('10.14') || osVersion().includes('10.15') ) {
 	if ( gui == false ) {
 	
-		if ( theDefault() == false )
-		{
+		if ( theDefault() == false ) {
 			//switch to light mode
 			if ( getDarkMode() == true ) {
 				setDarkMode(false);
