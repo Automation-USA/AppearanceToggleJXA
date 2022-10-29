@@ -1,12 +1,12 @@
-/*version 1.0.1
-2020-02-28
+/*version 1.1
+2022-10-28
 Julio Toledo, Automation USA LLC
 https://www.automationusa.net
-switch Appearance in macOS Mojave, Catalina
+switch Appearance in macOS Mojave, Catalina, Big Sur, Monterey, and Ventura
 by toggling Dark/Light mode and switching the corresponding wallpaper*/
 
 //toggle this value to invoke user interaction list
-var gui = false ; 
+var gui = false ;
 
 //set your preferred appearance here
 var theChoice = ['Light Mode'];
@@ -17,17 +17,20 @@ appSE.includeStandardAdditions = true;
 var app = Application.currentApplication();
 app.includeStandardAdditions = true;
 
-function osVersion() {
+function osVersion()
+{
 	var os = app.systemInfo().systemVersion;
 	return os;
 }
 
-function getDarkMode() {
+function getDarkMode()
+{
 	var bool = appSE.appearancePreferences.darkMode();
 	return bool;
 }
 
-function setDarkMode(bool) {
+function setDarkMode(bool)
+{
 	if ( bool == false) {
 		appSE.appearancePreferences.darkMode = false;
 	}
@@ -46,6 +49,18 @@ function switchWallpaper(bool) {
 			var myOS = 'catalina';
 			var wallPaper = '/System/Library/Desktop Pictures/Catalina Day.heic';
 		}
+		else if (osVersion().includes('11.') ){
+			var myOS = 'bigsur';
+			var wallPaper = '/System/Library/Desktop Pictures/Big Sur Graphic.heic';
+		}
+		else if (osVersion().includes('12.') ){
+			var myOS = 'monterey';
+			var wallPaper = '/System/Library/Desktop Pictures/Monterey Graphic.heic';
+		}
+		else if (osVersion().includes('13.') ){
+			var myOS = 'ventura';
+			var wallPaper = '/System/Library/Desktop Pictures/Ventura Graphic.heic';
+		}
 		if ( myOS == 'mojave') {
 			appSE.currentDesktop.picture = wallPaper;
 		}
@@ -55,9 +70,21 @@ function switchWallpaper(bool) {
 			var myOS = 'mojave';
 			var wallPaper = '/Library/Desktop Pictures/Mojave Night.jpg';
 		}
-		else if (osVersion().includes('10.15') ) {
+		else if (osVersion().includes('10.15') ){
 			var myOS = 'catalina';
 			var wallPaper = '/System/Library/Desktop Pictures/Catalina Night.heic';
+		}
+		else if (osVersion().includes('11.') ){
+			var myOS = 'bigSur';
+			var wallPaper = '/System/Library/Desktop Pictures/Big Sur Road.heic';
+		}
+		else if (osVersion().includes('12.') ){
+			var myOS = 'monterey';
+			var wallPaper = '/System/Library/Desktop Pictures/Monterey Graphic.heic';
+		}
+		else if (osVersion().includes('13.')) {
+			var myOS = 'ventura' ;
+			var wallPaper = '/System/Library/Desktop Pictures/Ventura Graphic.heic'
 		}
 		if ( myOS == 'mojave') {
 			appSE.currentDesktop.picture = wallPaper;
@@ -65,7 +92,8 @@ function switchWallpaper(bool) {
 	}
 }
 
-function confirmChoice (gui, theChoice) {
+function confirmChoice (gui, theChoice) 
+{
 	if (gui == true ) 
 	{
 		try {
@@ -81,7 +109,7 @@ function confirmChoice (gui, theChoice) {
 			if ( pickList == 'Dark Mode' ) {
 				var theChoice = true ;
 			}
-			else if ( pickList == 'Light Mode' ) {
+			else if ( pickList == 'Light Mode' ){
 				var theChoice = false ;
 			}
 	}
@@ -99,15 +127,17 @@ function theDefault()
 }
 
 //methodMain
-if ( osVersion().includes('10.14') || osVersion().includes('10.15') ) {
+if ( osVersion().includes('10.14') || osVersion().includes('10.15') || osVersion().includes('11.') || osVersion().includes('12.') || osVersion().includes('13.') )
+{
 	if ( gui == false ) {
 	
-		if ( theDefault() == false ) {
+		if ( theDefault() == false )
+		{
 			//switch to light mode
 			if ( getDarkMode() == true ) {
 				setDarkMode(false);
 				switchWallpaper(false);				
-				app.displayNotification (
+				app.displayNotification(
 					'Appearance switched to "Light"',
 					{ withTitle: 'Appearance Toggle', subtitle: 'Done!' }
 				)
@@ -118,7 +148,7 @@ if ( osVersion().includes('10.14') || osVersion().includes('10.15') ) {
 			if ( getDarkMode() == false ) {
 				setDarkMode(true);
 				switchWallpaper (true);
-				app.displayNotification (
+				app.displayNotification(
 					'Appearance switched to "Dark"',
 					{ withTitle: 'Appearance Toggle', subtitle: 'Done!' }
 				)
@@ -132,7 +162,7 @@ if ( osVersion().includes('10.14') || osVersion().includes('10.15') ) {
 			if ( getDarkMode() == true ) {
 				setDarkMode(false);
 				switchWallpaper(false);
-				app.displayNotification (
+				app.displayNotification(
 					'Appearance switched to "Light"',
 					{ withTitle: 'Appearance Toggle', subtitle: 'Done!' }
 				)
@@ -143,7 +173,7 @@ if ( osVersion().includes('10.14') || osVersion().includes('10.15') ) {
 			if ( getDarkMode() == false ) {
 				setDarkMode(false);
 				switchWallpaper(true);
-				app.displayNotification (
+				app.displayNotification(
 					'Appearance switched to "Dark"',
 					{ withTitle: 'Appearance Toggle', subtitle: 'Done!' }
 				)
